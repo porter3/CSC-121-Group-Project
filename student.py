@@ -76,18 +76,19 @@ def drop_course(id, c_roster):
     # Remove student ID from the course’s roster and display a message
     # if there is no problem.  This function has no return value.
     # -------------------------------------------------------------
-    while True:
-            course = input("Enter course you want to drop: ")
-            # get the students registered for the course
-            students_in_course = c_roster.get(course)
-            # check to see if course is correct
-            if course not in c_roster:
-                print("Course not found\n")
-            # check to see if student already registered for course
-            elif str(id) not in students_in_course:
-                print("You are not enrolled in that course.\n")
-            else:
-                # remove student ID from the course’s roster and display a message "Course dropped"
-                c_roster[course].remove(str(id))
-                print("Course dropped\n")
-                break
+    course = input("Enter course you want to drop: ")
+    # get the students registered for the course
+    students_in_course = c_roster.get(course)
+    # check to see if course is correct
+    if course not in c_roster:
+        print("Course not found\n")
+        return
+    # check to see if student already registered for course
+    elif str(id) not in students_in_course:
+        print("You are not enrolled in that course.\n")
+        return
+    else:
+        # remove student ID from the course’s roster and display a message "Course dropped"
+        c_roster[course].remove(str(id))
+        print("Course dropped\n")
+        return
