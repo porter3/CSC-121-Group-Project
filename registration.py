@@ -44,7 +44,7 @@ def main():
         logged_in = login(student_id, student_list)
         if not logged_in:
             print('ID or PIN incorrect\n')
-            student_id = input('Enter ID to log in, or 0 to quit: ')
+            continue
         else:
             print('ID and PIN verified\n')
 
