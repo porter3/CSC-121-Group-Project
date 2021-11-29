@@ -36,29 +36,40 @@ def main():
                      'CSC104': []}
     course_max_size = {'CSC101': 3, 'CSC102': 2, 'CSC103': 1, 'CSC104': 3}
 
-    student_id = input('Enter ID to log in, or 0 to quit: ')
+    while True:
+        student_id = input('Enter ID to log in, or 0 to quit: ')
+        if student_id == '0':
+            exit(1)
 
-    while student_id != 0:
         logged_in = login(student_id, student_list)
         if not logged_in:
             print('ID or PIN incorrect\n')
             student_id = input('Enter ID to log in, or 0 to quit: ')
         else:
             print('ID and PIN verified\n')
-            break
 
-    choice = int(input("Enter 1 to add course, 2 to drop course, 3 to list courses, 4 to show bill, 0 to exit: "))
+        is_in_state = student_in_state[student_id]
 
-    while choice != 0:
-        if choice == 1:
-            student.add_course(student_id, course_roster, course_max_size)
-            choice = int(input("Enter 1 to add course, 2 to drop course, 3 to list courses, 4 to show bill, 0 to exit: "))
-        if choice == 2:
-            student.drop_course(student_id, course_roster)
-            choice = int(input("Enter 1 to add course, 2 to drop course, 3 to list courses, 4 to show bill, 0 to exit: "))
-        if choice == 3:
-            student.list_courses(student_id, course_roster)
-            choice = int(input("Enter 1 to add course, 2 to drop course, 3 to list courses, 4 to show bill, 0 to exit: "))
+        choice = None
+
+        # student session loop
+        while choice != 0:
+            try:
+                choice = int(input("Enter 1 to add course, 2 to drop course, 3 to list courses, 4 to show bill, 0 to exit: "))
+            except ValueError:
+                print('Input must be numeric.\n')
+                continue
+            if choice == 1:
+                student.add_course(student_id, course_roster, course_max_size)
+            elif choice == 2:
+                student.drop_course(student_id, course_roster)
+            elif choice == 3:
+                student.list_courses(student_id, course_roster)
+            elif choice == 4:
+                hours, cost = billing.calculate_hours_and_bill(student_id, is_in_state, course_roster, course_hours)
+                billing.display_hours_and_bill(hours, cost)
+
+        print('Session ended.\n')
 
 
 def login(id, s_list):
