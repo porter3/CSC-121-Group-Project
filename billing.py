@@ -15,15 +15,19 @@ def calculate_hours_and_bill(id, s_in_state, c_rosters, c_hours):
     # cost.
     # ------------------------------------------------------------
     # for course <var> in c_rosters keys <iterable>:
+    total_hours = 0
+    billing = 0.00
     for course in c_rosters:
         # for s_id in c_rosters values:
         for s_id in c_rosters[course]:
             # If id is found in the c_rosters values:
-            if id in s_id:
-                c_rosters.get(course)
-                cost_per_hour = 225.0 if s_in_state else 850.0
-                billing = c_hours * cost_per_hour
-                return c_hours, billing
+            if id == s_id:
+                hours = c_hours[course]
+                total_hours += hours
+
+    cost_per_hour = 225.0 if s_in_state else 850.0
+    billing = total_hours * cost_per_hour
+    return total_hours, billing
 
 
 def display_hours_and_bill(hours, cost):
