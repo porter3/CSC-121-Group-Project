@@ -21,14 +21,10 @@ def calculate_hours_and_bill(id, s_in_state, c_rosters, c_hours):
             # If id is found in the c_rosters values:
             if id in s_id:
                 # Retrieve the course number from c_rosters dictionary and store it in a variable (courses).
-                courses = c_rosters.get(course)
-                # If the retrieved courses are in the c_hours keys:
-                if courses in c_hours:
-                    # Get the associated c_hours value and assign it to a variable.
-                    c_hours = c_hours[courses]
-                    cost_per_hour = 225.0 if s_in_state else 850.0
-                    billing = c_hours * cost_per_hour
-                    return c_hours, billing
+                c_rosters.get(course)
+                cost_per_hour = 225.0 if s_in_state else 850.0
+                billing = c_hours * cost_per_hour
+                return c_hours, billing
 
 
 def display_hours_and_bill(hours, cost):
