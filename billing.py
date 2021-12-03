@@ -1,11 +1,11 @@
-# Author:
-# Date:
+# Author: Matthew Prentice
+# Date: 12/3/2021
 #
 # This module calculates and displays billing information
 # for students in the class registration system.  Student and
 # class records are reviewed and tuition fees are calculated.
 # -----------------------------------------------------------------
-def calculate_hours_and_bill(id, c_rosters, c_hours, s_in_state):
+def calculate_hours_and_bill(id, s_in_state, c_rosters, c_hours):
     # ------------------------------------------------------------
     # This function calculate billing information. It takes four
     # parameters: id, the student id; s_in_state, the list of
@@ -14,20 +14,21 @@ def calculate_hours_and_bill(id, c_rosters, c_hours, s_in_state):
     # This function returns the number of course hours and tuition
     # cost.
     # ------------------------------------------------------------
-   for course in c_rosters:
-    for s_id in c_rosters[course]:
-        if str(id) in s_id:
-            # Now what? Should this be wrapped in the for blocks below?
-
-      for ele in s_in_state:
-       if s_in_state[ele]:
-           # How do I associate the ID to courses and course hours?
-           billing = c_hours * float(225.00)
-           return c_hours and billing
-       if not s_in_state[ele]:
-           # How do I associate the ID to courses and course hours?
-            billing = c_hours * float(850.00)
-            return c_hours and billing
+    # for course <var> in c_rosters keys <iterable>:
+    for course in c_rosters:
+        # for s_id in c_rosters values:
+        for s_id in c_rosters[course]:
+            # If id is found in the c_rosters values:
+            if id in s_id:
+                # Retrieve the course number from c_rosters dictionary and store it in a variable (courses).
+                courses = c_rosters.get(course)
+                # If the retrieved courses are in the c_hours keys:
+                if courses in c_hours:
+                    # Get the associated c_hours value and assign it to a variable.
+                    c_hours = c_hours[courses]
+                    cost_per_hour = 225.0 if s_in_state else 850.0
+                    billing = c_hours * cost_per_hour
+                    return c_hours, billing
 
 
 def display_hours_and_bill(hours, cost):
@@ -36,6 +37,5 @@ def display_hours_and_bill(hours, cost):
     # is taking and the total tuition cost. It takes two parameters:
     # hours and cost. This function has no return value.
     # ------------------------------------------------------------
-    print(str(id), int(hours), float(cost))
-
+    print(id, int(hours), float(cost))
 
