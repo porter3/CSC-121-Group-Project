@@ -20,7 +20,6 @@ def calculate_hours_and_bill(id, s_in_state, c_rosters, c_hours):
     for course in c_rosters:
         # for s_id in c_rosters values:
         for s_id in c_rosters[course]:
-            # If id is found in the c_rosters values:
             if id == s_id:
                 hours = c_hours[course]
                 total_hours += hours
