@@ -35,5 +35,6 @@ def display_hours_and_bill(hours, cost):
     # is taking and the total tuition cost. It takes two parameters:
     # hours and cost. This function has no return value.
     # ------------------------------------------------------------
-    print(id, int(hours), float(cost))
+    print('Course load: ', int(hours), 'credit hours')
+    print('Enrollment cost: $', float(cost))
 
