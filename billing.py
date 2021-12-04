@@ -16,7 +16,7 @@ def calculate_hours_and_bill(id, s_in_state, c_rosters, c_hours):
     # ------------------------------------------------------------
     # for course <var> in c_rosters keys <iterable>:
     total_hours = 0
-    billing = 0.00
+    
     for course in c_rosters:
         # for s_id in c_rosters values:
         for s_id in c_rosters[course]:
@@ -35,6 +35,6 @@ def display_hours_and_bill(hours, cost):
     # is taking and the total tuition cost. It takes two parameters:
     # hours and cost. This function has no return value.
     # ------------------------------------------------------------
-    print('Course load: ', int(hours), 'credit hours')
-    print('Enrollment cost: $', float(cost))
+    print('Course load:', int(hours), 'credit hours')
+    print('Enrollment cost: $' + format(cost, ',.2f'))
 
