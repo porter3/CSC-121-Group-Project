@@ -36,5 +36,5 @@ def display_hours_and_bill(hours, cost):
     # hours and cost. This function has no return value.
     # ------------------------------------------------------------
     print('Course load:', int(hours), 'credit hours')
-    print('Enrollment cost: $' + format(cost, ',.2f'))
+    print('Enrollment cost: $' + format(cost, ',.2f') + '\n')
 
